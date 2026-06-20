@@ -1,0 +1,150 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('fundo.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: system-ui, -apple-system, sans-serif;
+    color: #fff;
+    overflow: hidden;
+}
+
+/* Área do Agregador de Links Rápidos */
+.links-grid {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    right: 10%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Caixas clicáveis dos links */
+.link-box {
+    background: rgba(30, 15, 10, 0.5); /* Vidro escuro */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    width: 200px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.link-box:hover {
+    background: rgba(45, 25, 18, 0.7);
+    border-color: #FF8A65;
+    transform: translateY(-2px);
+}
+
+/* Barra Lateral movida para Inferior Direita */
+.bottom-right-sidebar {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column; /* Deixa um em cima do outro */
+    gap: 12px;
+}
+
+.icon-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(20, 10, 5, 0.4);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    transition: background 0.2s;
+}
+
+.icon-btn svg {
+    width: 20px;
+    height: 20px;
+    opacity: 0.9;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.icon-btn.purple { background: #8B5CF6; border: none; }
+.icon-btn.orange { background: #FF8A65; border: none; color: #1a0b08; }
+
+/* Transição e Modo Foco (Oculta tudo) */
+.links-grid, .bottom-right-sidebar {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+body.hide-ui .links-grid,
+body.hide-ui .bottom-right-sidebar button:not(#btn-eye) {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+/* Container interno da caixa para alinhar título e botão */
+.link-box {
+    position: relative; /* Importante para o botão de deletar */
+}
+
+/* O texto do link ocupa todo o espaço para ser clicável */
+.link-title {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilo específico para a caixa de Adicionar */
+.add-box {
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.2);
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.add-box:hover {
+    border-color: #FF8A65;
+    color: #FF8A65;
+    background: rgba(255, 138, 101, 0.05);
+}
+
+/* Botão de deletar (X) */
+.delete-link-btn {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0; /* Invisível por padrão */
+    transition: opacity 0.2s, color 0.2s;
+}
+
+/* Mostra o X apenas quando o mouse passa por cima da caixa */
+.link-box:hover .delete-link-btn {
+    opacity: 1;
+}
+
+.delete-link-btn:hover {
+    color: #ef4444; /* Vermelho ao focar no X */
+}
