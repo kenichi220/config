@@ -1,0 +1,8 @@
+CompileFlags:
+  Add:
+    - --cuda-gpu-arch=sm_120
+    - --cuda-path=/opt/nvidia/hpc_sdk/Linux_x86_64/26.3/cuda/12.0
+    - -x
+    - cuda
+  Remove:
+    - -forward-unknown-to-host-compiler
